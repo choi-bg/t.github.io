@@ -1,18 +1,11 @@
-GitHub Pages 업로드용 PWA 패키지입니다.
+GitHub Pages 업로드용 파일입니다.
 
-업로드 파일:
-- index.html
-- manifest.json
-- service-worker.js
-- apple-touch-icon.png
-- icon-192.png
-- icon-512.png
+업로드 방법:
+1. 저장소 루트에 있는 기존 파일들을 이 폴더 안 파일들로 교체
+2. Commit changes
+3. Pages 주소에서 새로고침
 
-사용 방법:
-1) GitHub 저장소 루트에 위 파일들을 업로드
-2) Settings > Pages > Deploy from a branch > main / (root)
-3) 배포 주소를 Safari로 열기
-4) 공유 버튼 > 홈 화면에 추가
-
-이번 버전은 iPhone Safari 하단의 흰 여백이 생기지 않도록
-full-screen / safe-area / dynamic viewport 대응이 반영되어 있습니다.
+바뀐 점:
+- 하단 어두운 영역과 자연스럽게 이어지는 배경 그라데이션 강화
+- 풀스크린 느낌 유지
+- iPhone safe-area 대응

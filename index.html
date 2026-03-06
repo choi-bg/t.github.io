@@ -3,29 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0a1630" />
+  <meta name="theme-color" content="#071325" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Hello App" />
-  <meta name="mobile-web-app-capable" content="yes" />
   <meta name="format-detection" content="telephone=no" />
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <title>Hello App</title>
   <style>
     :root {
-      --bg-1: #061124;
-      --bg-2: #0d1d3d;
-      --bg-3: #162d59;
-      --card: rgba(24, 43, 84, 0.46);
+      --bg-top: #081a3b;
+      --bg-mid: #112c63;
+      --bg-bottom: #031126;
+      --card: rgba(54, 79, 137, 0.44);
       --card-line: rgba(255, 255, 255, 0.10);
-      --text: rgba(255,255,255,0.96);
-      --muted: rgba(226, 234, 250, 0.82);
-      --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
-      --safe-top: env(safe-area-inset-top, 0px);
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
-      --safe-left: env(safe-area-inset-left, 0px);
-      --safe-right: env(safe-area-inset-right, 0px);
+      --text: #f4f7ff;
+      --muted: rgba(240, 244, 255, 0.82);
+      --subtle: rgba(240, 244, 255, 0.54);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
     }
 
     * {
@@ -34,288 +30,243 @@
     }
 
     html {
-      height: 100%;
-      background: var(--bg-1);
+      height: -webkit-fill-available;
+      background:
+        radial-gradient(circle at 14% 14%, rgba(149, 181, 255, 0.34), transparent 24%),
+        radial-gradient(circle at 82% 82%, rgba(101, 131, 225, 0.22), transparent 20%),
+        linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 54%, #08204a 72%, var(--bg-bottom) 100%);
+      background-color: var(--bg-bottom);
     }
 
     body {
       margin: 0;
-      width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-      overflow: hidden;
+      min-height: -webkit-fill-available;
+      width: 100%;
       position: relative;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(60% 40% at 18% 12%, rgba(104, 150, 255, 0.28), transparent 60%),
-        radial-gradient(42% 28% at 80% 84%, rgba(164, 186, 255, 0.18), transparent 70%),
-        radial-gradient(32% 24% at 50% 100%, rgba(255, 255, 255, 0.07), transparent 80%),
-        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 52%, var(--bg-3) 100%);
-    }
-
-    .app {
-      min-height: 100vh;
-      min-height: 100dvh;
-      width: 100%;
+        radial-gradient(circle at 14% 14%, rgba(149, 181, 255, 0.34), transparent 24%),
+        radial-gradient(circle at 82% 82%, rgba(101, 131, 225, 0.22), transparent 20%),
+        linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 54%, #08204a 72%, var(--bg-bottom) 100%);
+      background-color: var(--bg-bottom);
       padding:
-        max(20px, calc(var(--safe-top) + 12px))
-        max(20px, calc(var(--safe-right) + 20px))
-        max(26px, calc(var(--safe-bottom) + 18px))
-        max(20px, calc(var(--safe-left) + 20px));
+        calc(env(safe-area-inset-top) + 28px)
+        22px
+        calc(env(safe-area-inset-bottom) + 42px)
+        22px;
       display: grid;
       place-items: center;
-      position: relative;
-      isolation: isolate;
     }
 
-    .glow,
-    .glow::before,
-    .glow::after {
-      position: absolute;
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
       inset: 0;
       pointer-events: none;
     }
 
-    .glow::before,
-    .glow::after {
-      content: "";
-      border-radius: 999px;
-      filter: blur(28px);
+    body::before {
+      background:
+        radial-gradient(circle at 20% 18%, rgba(182, 202, 255, 0.18), transparent 18%),
+        radial-gradient(circle at 74% 78%, rgba(164, 182, 255, 0.16), transparent 18%),
+        radial-gradient(circle at 88% 20%, rgba(42, 74, 145, 0.16), transparent 16%);
+      filter: blur(6px);
+      opacity: 0.95;
     }
 
-    .glow::before {
+    body::after {
+      background:
+        linear-gradient(180deg, transparent 0%, transparent 60%, rgba(2, 12, 27, 0.16) 76%, rgba(2, 10, 24, 0.44) 90%, rgba(1, 8, 20, 0.72) 100%),
+        radial-gradient(ellipse at bottom, rgba(13, 32, 70, 0.38) 0%, rgba(3, 12, 29, 0) 56%);
+      mix-blend-mode: normal;
+    }
+
+    .bg-orb {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(22px);
+      pointer-events: none;
+      opacity: 0.82;
+      z-index: 0;
+    }
+
+    .bg-orb.one {
+      width: 180px;
+      height: 180px;
+      top: 7%;
+      left: 0;
+      background: rgba(158, 185, 255, 0.24);
+    }
+
+    .bg-orb.two {
       width: 220px;
       height: 220px;
-      top: 8%;
-      left: -2%;
-      background: rgba(90, 134, 255, 0.24);
-    }
-
-    .glow::after {
-      width: 250px;
-      height: 250px;
-      right: -8%;
-      bottom: 2%;
-      background: rgba(255,255,255,0.10);
+      right: -26px;
+      bottom: 10%;
+      background: rgba(119, 149, 255, 0.16);
     }
 
     .shell {
-      width: min(100%, 430px);
       position: relative;
       z-index: 1;
+      width: min(100%, 430px);
     }
 
     .card {
       position: relative;
-      overflow: hidden;
       border-radius: 34px;
-      padding: 26px 22px 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-      background-color: var(--card);
+      padding: 30px 28px 28px;
+      background: linear-gradient(180deg, rgba(86, 111, 171, 0.28), rgba(49, 73, 126, 0.36));
       border: 1px solid var(--card-line);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(24px) saturate(130%);
-      -webkit-backdrop-filter: blur(24px) saturate(130%);
-      opacity: 0;
-      transform: translateY(18px) scale(0.985);
-      animation: cardIn 0.85s cubic-bezier(.2,.9,.2,1) .14s forwards;
+      backdrop-filter: blur(22px) saturate(130%);
+      -webkit-backdrop-filter: blur(22px) saturate(130%);
+      overflow: hidden;
     }
 
     .card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.00) 32%, rgba(255,255,255,0.02) 64%, rgba(255,255,255,0.10));
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02) 34%, transparent 55%);
       pointer-events: none;
     }
 
-    .topline {
+    .topbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 28px;
-      opacity: 0.95;
+      position: relative;
+      z-index: 1;
     }
 
     .appname {
-      font-size: 0.8rem;
-      color: rgba(239,244,255,0.86);
-      letter-spacing: 0.01em;
+      margin: 0;
+      font-size: 0.84rem;
+      letter-spacing: -0.02em;
+      color: var(--muted);
+      font-weight: 500;
     }
 
     .dots {
       display: flex;
-      gap: 9px;
+      gap: 10px;
     }
 
     .dot {
-      width: 9px;
-      height: 9px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background: rgba(223, 233, 255, 0.22);
+      background: rgba(214, 225, 255, 0.24);
     }
 
     .eyebrow {
-      margin: 0 0 14px;
-      font-size: 0.82rem;
-      line-height: 1;
+      margin: 0 0 18px;
+      font-size: 0.86rem;
+      letter-spacing: 0.16em;
       font-weight: 700;
-      letter-spacing: 0.18em;
-      color: rgba(236, 242, 255, 0.68);
+      color: rgba(242, 245, 255, 0.66);
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(3.6rem, 15vw, 5rem);
-      line-height: 0.9;
-      font-weight: 800;
+      font-size: clamp(4.2rem, 15vw, 5.4rem);
+      line-height: 0.88;
       letter-spacing: -0.09em;
+      font-weight: 800;
       text-wrap: balance;
     }
 
-    .accent {
-      background: linear-gradient(180deg, rgba(242,247,255,0.98), rgba(201,220,255,0.94));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    }
-
     .desc {
-      margin: 22px 0 0;
-      font-size: 0.98rem;
+      margin: 26px 0 0;
+      font-size: 1rem;
       line-height: 1.58;
+      letter-spacing: -0.02em;
       color: var(--muted);
-      max-width: 19em;
+      max-width: 20ch;
+      word-break: keep-all;
     }
 
     .cta {
-      margin-top: 24px;
+      margin-top: 28px;
       display: inline-flex;
       align-items: center;
-      gap: 11px;
-      min-height: 52px;
-      padding: 0 18px;
+      gap: 14px;
+      padding: 14px 22px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.10);
       background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
-      color: rgba(250,252,255,0.96);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 10px 20px rgba(9, 18, 40, 0.16);
+      color: var(--text);
       font-size: 0.95rem;
       font-weight: 700;
-      width: fit-content;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      user-select: none;
     }
 
     .cta-badge {
-      width: 16px;
-      height: 16px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: linear-gradient(180deg, #dceaff, #9cc2ff);
-      box-shadow: 0 0 0 5px rgba(164, 196, 255, 0.10);
-      flex: 0 0 auto;
+      background: radial-gradient(circle at 35% 30%, #dce8ff, #9ebeff 68%, #7d9ae0 100%);
+      box-shadow: 0 0 0 6px rgba(171, 194, 255, 0.10);
+      flex: none;
     }
 
     .footer {
-      margin-top: 18px;
       text-align: center;
-      color: rgba(228, 235, 249, 0.52);
-      font-size: 0.8rem;
-      letter-spacing: -0.01em;
+      margin-top: 22px;
+      color: var(--subtle);
+      font-size: 0.84rem;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 1;
     }
 
-    .splash {
-      position: fixed;
-      inset: 0;
-      z-index: 10;
-      display: grid;
-      place-items: center;
-      padding-top: var(--safe-top);
-      padding-bottom: var(--safe-bottom);
-      background:
-        radial-gradient(55% 38% at 50% 38%, rgba(101,149,255,0.22), transparent 65%),
-        linear-gradient(180deg, #061124 0%, #0d1d3d 54%, #162d59 100%);
-      animation: splashOut 0.8s ease 0.95s forwards;
-    }
-
-    .mark {
-      width: 94px;
-      height: 94px;
-      border-radius: 28px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.07));
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255,255,255,0.18);
-      transform: scale(0.86);
-      animation: iconIn 0.7s cubic-bezier(.2,.9,.2,1) forwards;
-    }
-
-    .mark span {
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -0.07em;
-      color: rgba(248, 251, 255, 0.98);
-    }
-
-    @keyframes iconIn {
-      to { transform: scale(1); }
-    }
-
-    @keyframes splashOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
+    @media (max-width: 390px) {
+      body {
+        padding-left: 18px;
+        padding-right: 18px;
       }
-    }
-
-    @keyframes cardIn {
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+      .card {
+        padding: 26px 22px 24px;
+        border-radius: 30px;
       }
-    }
-
-    @supports (-webkit-touch-callout: none) {
-      body,
-      .app {
-        min-height: -webkit-fill-available;
+      h1 {
+        font-size: clamp(3.7rem, 15vw, 4.6rem);
       }
     }
   </style>
 </head>
 <body>
-  <div class="splash" aria-hidden="true">
-    <div class="mark"><span>H</span></div>
-  </div>
+  <div class="bg-orb one"></div>
+  <div class="bg-orb two"></div>
 
-  <main class="app">
-    <div class="glow" aria-hidden="true"></div>
-
-    <section class="shell">
-      <div class="card">
-        <div class="topline">
-          <div class="appname">Hello App</div>
-          <div class="dots" aria-hidden="true">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
+  <main class="shell">
+    <section class="card">
+      <div class="topbar">
+        <p class="appname">Hello App</p>
+        <div class="dots" aria-hidden="true">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
         </div>
-
-        <p class="eyebrow">MINIMAL PWA</p>
-        <h1><span class="accent">Hello,<br />world!</span></h1>
-        <p class="desc">
-          아이폰 Safari에서 이 페이지를 열고 홈 화면에 추가하면,
-          앱처럼 바로 실행되는 깔끔한 웹앱입니다.
-        </p>
-        <div class="cta"><span class="cta-badge"></span> 홈 화면에 추가해서 사용</div>
       </div>
 
-      <div class="footer">Safari 공유 버튼 → 홈 화면에 추가</div>
+      <p class="eyebrow">MINIMAL PWA</p>
+      <h1>Hello,<br />world!</h1>
+      <p class="desc">아이폰 Safari에서 이 페이지를 열고 홈 화면에 추가하면, 앱처럼 바로 실행되는 깔끔한 웹앱입니다.</p>
+      <div class="cta"><span class="cta-badge"></span>홈 화면에 추가해서 사용</div>
     </section>
+
+    <div class="footer">Safari 공유 버튼 → 홈 화면에 추가</div>
   </main>
 
   <script>
